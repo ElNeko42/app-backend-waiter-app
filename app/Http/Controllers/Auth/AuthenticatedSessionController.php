@@ -32,6 +32,7 @@ class AuthenticatedSessionController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'is_admin' => $user->is_admin,
         ]);
     }
 
