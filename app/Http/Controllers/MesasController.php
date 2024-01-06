@@ -11,10 +11,13 @@ class MesasController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        //
+        $mesas = Mesa::all();
+        return response()->json($mesas);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,16 +37,16 @@ class MesasController extends Controller
             'numero_de_asientos' => 'required|integer',
             'numero_de_mesa' => 'required|string',
         ]);
-    
+
         $mesa = new Mesa();
         $mesa->tipo = $request->tipo_de_mesa;
         $mesa->asientos = $request->numero_de_asientos;
         $mesa->numero_mesa = $request->numero_de_mesa;
         $mesa->save();
-    
+
         return response()->json(['message' => 'Mesa creada con éxito', 'data' => $mesa], 201);
     }
-    
+
 
     /**
      * Display the specified resource.

@@ -21,6 +21,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::get('/home', [MesasController::class, 'index']);
+
 Route::post('/mesas', [MesasController::class, 'store']);
 
 
