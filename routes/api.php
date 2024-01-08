@@ -22,7 +22,10 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::get('/home', [MesasController::class, 'index']);
+Route::get('/mesas/{id}', [MesasController::class, 'show']);
+
 
 Route::post('/mesas', [MesasController::class, 'store']);
+Route::put('/mesas/{id}', [MesasController::class, 'update']);
 
 
