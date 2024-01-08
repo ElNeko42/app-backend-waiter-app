@@ -80,6 +80,8 @@ class MesasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $mesa = Mesa::find($id);
+        $mesa->delete();
+        return response()->json(['message' => 'Mesa eliminada con éxito']);
     }
 }
