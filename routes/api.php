@@ -35,7 +35,7 @@ Route::post('/productos', [ProductoController::class, 'store']);
 Route::put('/productos/{id}', [ProductoController::class, 'update']);
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
 
-Route::get('/tipo-producto', [TipoProductoController::class, 'index']);
+Route::get('/tipo_producto', [TipoProductoController::class, 'index']);
 Route::get('/tipo_producto/{id}', [TipoProductoController::class, 'show']);
 Route::post('/tipo-producto', [TipoProductoController::class, 'store']);
 Route::put('/tipo_producto/{id}', [TipoProductoController::class, 'update']);
