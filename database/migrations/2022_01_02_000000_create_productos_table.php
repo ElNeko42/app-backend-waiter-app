@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('tipo_producto_id'); // Cambia 'tipo' por 'tipo_producto_id'
             $table->string('nombre');
-            $table->enum('tipo', ['comida', 'bebida', 'otro']);
             $table->decimal('precio_interior', 8, 2);
             $table->decimal('precio_terraza', 8, 2);
             $table->string('imagen')->nullable(); // Asume que vas a guardar la URL de la imagen
             $table->timestamps();
+    
+            $table->foreign('tipo_producto_id')->references('id')->on('tipo_producto')->onDelete('cascade');
         });
         
     }
