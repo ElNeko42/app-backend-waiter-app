@@ -30,6 +30,7 @@ Route::post('/mesas', [MesasController::class, 'store']);
 Route::put('/mesas/{id}', [MesasController::class, 'update']);
 Route::delete('/mesas/{id}', [MesasController::class, 'destroy']);
 
+Route::get('/productos', [ProductoController::class, 'index']);
 Route::get('/productos/{id}', [ProductoController::class, 'show']);
 Route::post('/productos', [ProductoController::class, 'store']);
 Route::put('/productos/{id}', [ProductoController::class, 'update']);

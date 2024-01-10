@@ -13,7 +13,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::with('tipoProducto')->get();
+
+        return response()->json($productos);
     }
 
     /**
@@ -29,16 +31,31 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        // Validación
         $validatedData = $request->validate([
-            'nombre' => 'required|max:255',
             'tipo_producto_id' => 'required|exists:tipo_producto,id',
+            'nombre' => 'required|max:255',
             'precio_interior' => 'required|numeric',
             'precio_terraza' => 'required|numeric',
-            'imagen' => 'nullable|image|max:2048', 
+           
         ]);
-        $producto = new Producto($validatedData);
-        $producto->save();
-        return response()->json(['message' => 'Producto creado con éxito', 'producto' => $producto], 201);
+    
+        // Procesamiento y almacenamiento de la imagen
+        $imagenPath = null;
+        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+            $imagenPath = $request->imagen->store('imagenes_productos', 'public');
+        }
+    
+        // Crear el producto
+        $producto = Producto::create([
+            'tipo_producto_id' => $validatedData['tipo_producto_id'],
+            'nombre' => $validatedData['nombre'],
+            'precio_interior' => $validatedData['precio_interior'],
+            'precio_terraza' => $validatedData['precio_terraza'],
+            'imagen' => $imagenPath,
+        ]);
+    
+        return response()->json($producto, 201);
     }
 
     /**
