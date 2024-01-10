@@ -41,9 +41,8 @@ class ProductoController extends Controller
         ]);
     
         // Procesamiento y almacenamiento de la imagen
-        $imagenPath = null;
-        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
-            $imagenPath = $request->imagen->store('imagenes_productos', 'public');
+        if ($request->hasFile('imagen')) {
+            $imagenPath = $request->file('imagen')->store('imagenes', 'public');
         }
     
         // Crear el producto
@@ -52,7 +51,7 @@ class ProductoController extends Controller
             'nombre' => $validatedData['nombre'],
             'precio_interior' => $validatedData['precio_interior'],
             'precio_terraza' => $validatedData['precio_terraza'],
-            'imagen' => $imagenPath,
+            'imagen' => $imagenPath ?? null,
         ]);
     
         return response()->json($producto, 201);
