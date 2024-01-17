@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MesasController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TipoProductoController;
+use App\Http\Controllers\ReservaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,12 @@ Route::get('/tipo_producto/{id}', [TipoProductoController::class, 'show']);
 Route::post('/tipo-producto', [TipoProductoController::class, 'store']);
 Route::put('/tipo_producto/{id}', [TipoProductoController::class, 'update']);
 Route::delete('/tipo_producto/{id}', [TipoProductoController::class, 'destroy']);
+
+route::get('/reservas', [ReservaController::class, 'index']);
+route::get('/reservas/{id}', [ReservaController::class, 'show']);
+route::post('/reservas', [ReservaController::class, 'store']);
+route::put('/reservas/{id}', [ReservaController::class, 'update']);
+route::delete('/reservas/{id}', [ReservaController::class, 'destroy']);
 
 
 
