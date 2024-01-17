@@ -13,7 +13,8 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //
+        $reservas = Reserva::all();
+        return response()->json($reservas);
     }
 
     /**
@@ -35,9 +36,13 @@ class ReservaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $reserva = Reserva::find($id);
+        if (!$reserva) {
+            return response()->json(['error' => 'Reserva no encontrada'], 404);
+        }
+        return response()->json($reserva);
     }
 
     /**
